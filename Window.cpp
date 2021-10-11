@@ -1,10 +1,8 @@
 #include "Window.hpp"
 
-Window::Window(const char* title, unsigned int width, unsigned int length)
-:screen(), dimensions(width, length), name(title)
+Window::Window(const char* title, unsigned int width, unsigned int length) : sf::RenderWindow(sf::VideoMode(width, length), title)
 {
-    screen.create(sf::VideoMode(dimensions.x, dimensions.y), name);
-    screen.setFramerateLimit(FRAMERATE);
+
 }
 
 Window::Window(const char* title, const sf::Vector2u& screenDimensions)
@@ -14,45 +12,30 @@ Window::Window(const char* title, const sf::Vector2u& screenDimensions)
 }
 
 Window::Window(const Window& w)
-:Window(w.name, w.dimensions)
+:Window(w.name, w.getSize())
 {
 
 }
 
 Window& Window::operator =(const Window& w)
 {
-    Window(w.name, w.dimensions);
+    Window(w.name, w.getSize());
     return *this;
 }
 
 Window::~Window()
 {
-    if(screen.isOpen())
+    if(isOpen())
     {
-        screen.close();
+        close();
     }
-}
-
-void Window::setDimensions(unsigned int width, unsigned int length)
-{
-    dimensions.x = width;
-    dimensions.y = length;
-}
-
-void Window::setDimensions(const sf::Vector2u& screenDimensions)
-{
-    dimensions = screenDimensions;
-}
-
-sf::Vector2u& Window::getDimensions()
-{
-    return dimensions;
 }
 
 std::ostream& operator <<(std::ostream& os, const Window& w)
 {
     os<<"Name: "<<w.name<<std::endl;
-    os<<"Dimensions: ("<<w.dimensions.x<<" x "<<w.dimensions.y<<")";
+    const sf::Vector2u& dimensions = w.getSize();
+    os<<"Dimensions: ("<<dimensions.x<<" x "<<dimensions.y<<")";
 
     return os;
 }

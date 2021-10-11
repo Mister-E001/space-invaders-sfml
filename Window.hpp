@@ -7,14 +7,10 @@
 #include <SFML/Window/Event.hpp>
 #include <iostream>
 
-class Window
+class Window: public sf::RenderWindow
 {
-public:
-    sf::RenderWindow screen;
-
 private:
-    sf::Vector2u dimensions;
-    const char* name;
+    const char* name = "Space Invaders"; //As far as I can tell, there's no method in sf::RenderWindow to get the window name; I'll fix this later
     static constexpr unsigned int FRAMERATE = 60;
 
 public:
@@ -23,9 +19,6 @@ public:
     Window(const Window& w);
     Window& operator =(const Window& w);
     ~Window();
-    void setDimensions(unsigned int width, unsigned int length);
-    void setDimensions(const sf::Vector2u& screenDimensions);
-    sf::Vector2u& getDimensions();
     friend std::ostream& operator <<(std::ostream& os, const Window& w);
 };
 
