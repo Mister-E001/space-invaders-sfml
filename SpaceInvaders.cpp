@@ -32,22 +32,22 @@ SpaceInvaders::~SpaceInvaders()
 
 void SpaceInvaders::play()
 {
-    while(window.screen.isOpen())
+    while(window.isOpen())
     {
         sf::Event event;
-        while(window.screen.pollEvent(event))
+        while(window.pollEvent(event))
         {
             switch(event.type)
             {
                 case sf::Event::Closed:
                 {
-                    window.screen.close();
+                    window.close();
                     break;
                 }
 
                 case sf::Event::Resized:
                 {
-                    window.setDimensions(window.screen.getSize());
+                    
                     break;
                 }
 
@@ -58,9 +58,9 @@ void SpaceInvaders::play()
             }
         }
 
-        window.screen.clear();
+        window.clear();
         //Draw stuff here
-        window.screen.display();
+        window.display();
     }
 }
 
