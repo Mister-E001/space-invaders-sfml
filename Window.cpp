@@ -2,7 +2,7 @@
 
 Window::Window(const char* title, unsigned int width, unsigned int length) : sf::RenderWindow(sf::VideoMode(width, length), title)
 {
-
+    setFramerateLimit(FRAMERATE);
 }
 
 Window::Window(const char* title, const sf::Vector2u& screenDimensions)
