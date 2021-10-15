@@ -4,11 +4,13 @@
 #include <SFML/System/Vector2.hpp>
 #include <iostream>
 #include "Window.hpp"
+#include "Ship.hpp"
 
 class SpaceInvaders
 {
 private:
     Window window;
+    Ship player;
 
 public:
     SpaceInvaders(unsigned int windowWidth, unsigned int windowLength);
